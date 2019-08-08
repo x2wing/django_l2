@@ -48,9 +48,13 @@ def post_edit(request, pk):
 def post_t(request):
     if request.method == "POST":
         form = PostForm(request.POST)
-        out_data = int(form.data['title']) * 50
-        print(type(out_data))
-        return render(request, 'blog/out.html', {'out': str(out_data)})
+        title = int(form.data['title'])
+        data1 = int(form.data['data1'])
+        data2 = int(form.data['data2'])
+        # print(type(out_data))
+        return render(request, 'blog/out.html', {'title': title,
+                                                 'data1': data1,
+                                                 'data2': data2,})
     else:
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
