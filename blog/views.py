@@ -46,15 +46,21 @@ def post_edit(request, pk):
 
 
 def post_t(request):
+    """ получение данных с формы"""
+    # если поле http method== "POST"
     if request.method == "POST":
+        # получаем данные с формы
         form = PostForm(request.POST)
+        # вытаскиваем данные из ответа сервера
         title = int(form.data['title'])
         data1 = int(form.data['data1'])
         data2 = int(form.data['data2'])
-        # print(type(out_data))
+        # вывод данных на форму
         return render(request, 'blog/out.html', {'title': title,
                                                  'data1': data1,
                                                  'data2': data2,})
+    # если первая загрузка формы
     else:
         form = PostForm()
+    # первая загрузка формы. render генерит html
     return render(request, 'blog/post_edit.html', {'form': form})
