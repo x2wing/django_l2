@@ -8,7 +8,7 @@ from .forms import PostForm
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/index.html', {'posts': posts})
 
 
 def post_detail(request, pk):
@@ -63,4 +63,4 @@ def post_t(request):
     else:
         form = PostForm()
     # первая загрузка формы. render генерит html
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'blog/index.html', {'form': form})
